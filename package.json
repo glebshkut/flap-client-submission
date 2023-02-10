@@ -2,7 +2,7 @@
   "name": "flap-client",
   "version": "1.0.0",
   "description": "Intentionally bad react-app for front-end assessment. Pairs with Flap",
-  "homepage": "https://github.com/glebshkut/flap-client-submission.git",
+  "homepage": "glebshkut.github.io/flap-client-submission",
   "scripts": {
     "test": "jest",
     "dev": "webpack-dev-server --hot --history-api-fallback --host 0.0.0.0",
