@@ -17,17 +17,17 @@ const Home = () => {
       <hr />
       <ul className="partsList">
         {parts.map(part => (
-          <li key={part.name} onClick={() => setSelectedPart(part.name)}>
+          <li key={part.name} onClick={() => setSelectedPart(part.name)} className={part.name === selectedPart ? 'selected' : ''}>
             {part.name} {part.amount}
             <button
-              onClick={e => {
+              onClick={() => {
                 dispatch(incrementPart(part.name));
               }}
             >
               +
             </button>
             <button
-              onClick={e => {
+              onClick={() => {
                 dispatch(decrementPart(part.name));
               }}
             >
