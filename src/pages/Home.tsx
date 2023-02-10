@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PartDescriptor from '../components/PartDescriptor';
-import { decrementPart, incrementPart } from '../actions/parts';
+import { addPart, decrementPart, incrementPart } from '../actions/parts';
 import { partsSelector } from '../selectors/local';
 
 import './Home.sass';
@@ -9,6 +9,7 @@ import './Home.sass';
 const Home = () => {
   const [selectedPart, setSelectedPart] = useState<string>(null);
   const [notes, setNotes] = useState('');
+  const [newPartName, setNewPartName] = useState('');
   const parts = useSelector(partsSelector);
   const dispatch = useDispatch();
 
@@ -17,6 +18,11 @@ const Home = () => {
       setSelectedPart(name);
       setNotes('');
     }
+  };
+
+  const handleButtonClick = () => {
+    dispatch(addPart(newPartName));
+    setNewPartName('');
   };
 
   return (
@@ -44,6 +50,17 @@ const Home = () => {
           </li>
         ))}
       </ul>
+      <hr />
+      <form onSubmit={e => e.preventDefault()}>
+        <h2>Create New Part</h2>
+        <input
+          type="text"
+          value={newPartName}
+          onChange={e => setNewPartName(e.target.value)}
+          placeholder="Enter new part name"
+        />
+        <button onClick={handleButtonClick} type="submit">Submit</button>
+      </form>
       <hr />
       <h2>Part Info</h2>
       {selectedPart &&
