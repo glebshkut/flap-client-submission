@@ -8,8 +8,16 @@ import './Home.sass';
 
 const Home = () => {
   const [selectedPart, setSelectedPart] = useState<string>(null);
+  const [notes, setNotes] = useState('');
   const parts = useSelector(partsSelector);
   const dispatch = useDispatch();
+
+  const handleSelection = (name: string) => {
+    if (selectedPart !== name) {
+      setSelectedPart(name);
+      setNotes('');
+    }
+  };
 
   return (
     <div>
@@ -17,7 +25,7 @@ const Home = () => {
       <hr />
       <ul className="partsList">
         {parts.map(part => (
-          <li key={part.name} onClick={() => setSelectedPart(part.name)} className={part.name === selectedPart ? 'selected' : ''}>
+          <li key={part.name} onClick={() => handleSelection(part.name)} className={part.name === selectedPart ? 'selected' : ''}>
             {part.name} {part.amount}
             <button
               onClick={() => {
@@ -41,7 +49,7 @@ const Home = () => {
       {selectedPart &&
         (() => {
           const part = parts.find(x => x.name === selectedPart);
-          return <PartDescriptor name={part.name} amount={part.amount} />;
+          return <PartDescriptor name={part.name} amount={part.amount} notes={notes} setNotes={setNotes} />;
         })()}
     </div>
   );
