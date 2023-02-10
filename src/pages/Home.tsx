@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import PartDescriptor from '../components/PartDescriptor';
 import { addPart, decrementPart, incrementPart } from '../actions/parts';
 import { partsSelector } from '../selectors/local';
+import { FaMinusSquare, FaPlusSquare } from 'react-icons/fa';
 
-import './Home.sass';
+
+import './Home.scss';
 
 const Home = () => {
   const [selectedPart, setSelectedPart] = useState<string>(null);
@@ -32,23 +34,26 @@ const Home = () => {
       <ul className="partsList">
         {parts.map(part => (
           <li key={part.name} onClick={() => handleSelection(part.name)} className={part.name === selectedPart ? 'selected' : ''}>
-            {part.name} {part.amount}
-            <button
-              onClick={e => {
-                e.stopPropagation();
-                dispatch(incrementPart(part.name));
-              }}
-            >
-              +
-            </button>
-            <button
-              onClick={e => {
-                e.stopPropagation();
-                dispatch(decrementPart(part.name));
-              }}
-            >
-              -
-            </button>
+            <p className="partName">{part.name}</p>
+            <p className="partAmount">{part.amount}</p>
+            <div className="buttonsComponent">
+              <span
+                onClick={e => {
+                  e.stopPropagation();
+                  dispatch(incrementPart(part.name));
+                }}
+              >
+                <FaMinusSquare size="2.5em" color="#337ab7" />
+              </span>
+              <span
+                onClick={e => {
+                  e.stopPropagation();
+                  dispatch(decrementPart(part.name));
+                }}
+              >
+                <FaPlusSquare size="2.5em" color="#337ab7" />
+              </span>
+            </div>
           </li>
         ))}
       </ul>
