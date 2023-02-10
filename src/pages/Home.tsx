@@ -34,14 +34,16 @@ const Home = () => {
           <li key={part.name} onClick={() => handleSelection(part.name)} className={part.name === selectedPart ? 'selected' : ''}>
             {part.name} {part.amount}
             <button
-              onClick={() => {
+              onClick={e => {
+                e.stopPropagation();
                 dispatch(incrementPart(part.name));
               }}
             >
               +
             </button>
             <button
-              onClick={() => {
+              onClick={e => {
+                e.stopPropagation();
                 dispatch(decrementPart(part.name));
               }}
             >
