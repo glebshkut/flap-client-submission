@@ -40,7 +40,7 @@ const Home = () => {
               <span
                 onClick={e => {
                   e.stopPropagation();
-                  dispatch(incrementPart(part.name));
+                  dispatch(decrementPart(part.name));
                 }}
               >
                 <FaMinusSquare size="2.5em" color="#337ab7" />
@@ -48,7 +48,7 @@ const Home = () => {
               <span
                 onClick={e => {
                   e.stopPropagation();
-                  dispatch(decrementPart(part.name));
+                  dispatch(incrementPart(part.name));
                 }}
               >
                 <FaPlusSquare size="2.5em" color="#337ab7" />
